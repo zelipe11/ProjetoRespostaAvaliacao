@@ -21,7 +21,18 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
+                if (dataGridView1.Rows[e.RowIndex].Cells["FORMATO"].Value?.ToString() == "IDENTIFICADA")
+                {
+                    //login
 
+                    frmRespostaQuestionario respostaQuestionario = new frmRespostaQuestionario();
+                    respostaQuestionario.ShowDialog();
+                }
+                else
+                {
+                    frmRespostaQuestionario respostaQuestionario = new frmRespostaQuestionario();
+                    respostaQuestionario.ShowDialog();
+                }
             }
             else
             {

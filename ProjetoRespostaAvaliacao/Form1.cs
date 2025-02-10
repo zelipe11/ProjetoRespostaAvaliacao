@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoRespostaAvaliacao.Formularios.Questionario;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,8 @@ namespace ProjetoRespostaAvaliacao
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            frmQuestionario questionario = new frmQuestionario();
+            questionario.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
