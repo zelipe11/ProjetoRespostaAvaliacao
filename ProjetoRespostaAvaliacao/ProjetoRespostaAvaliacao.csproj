@@ -64,11 +64,11 @@
     <Compile Include="Formularios\Questionario\frmRespostaQuestionario.Designer.cs">
       <DependentUpon>frmRespostaQuestionario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Respostas\frmRespostas.cs">
+    <Compile Include="Formularios\Respostas\frmResultados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Respostas\frmRespostas.Designer.cs">
-      <DependentUpon>frmRespostas.cs</DependentUpon>
+    <Compile Include="Formularios\Respostas\frmResultados.Designer.cs">
+      <DependentUpon>frmResultados.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     <EmbeddedResource Include="Formularios\Questionario\frmRespostaQuestionario.resx">
       <DependentUpon>frmRespostaQuestionario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Respostas\frmRespostas.resx">
-      <DependentUpon>frmRespostas.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\Respostas\frmResultados.resx">
+      <DependentUpon>frmResultados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

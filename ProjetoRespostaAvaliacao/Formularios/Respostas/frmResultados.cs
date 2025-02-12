@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProjetoRespostaAvaliacao.Formularios.Respostas
 {
-    public partial class frmRespostas : Form
+    public partial class frmResultados : Form
     {
-        public frmRespostas()
+        public frmResultados()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace ProjetoRespostaAvaliacao.Formularios.Respostas
 {
-    partial class frmRespostas
+    partial class frmResultados
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.IDCAMPANHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CAMPANHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DTRESPOSTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HABILIDADES = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOTAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(339, 24);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Nome Func/Anonimo - Cargo Func";
             // 
             // dataGridView1
             // 
@@ -41,52 +51,50 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDCAMPANHA,
-            this.CAMPANHA,
-            this.DTRESPOSTA});
+            this.HABILIDADES,
+            this.NOTAS});
             this.dataGridView1.Location = new System.Drawing.Point(12, 60);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 378);
+            this.dataGridView1.Size = new System.Drawing.Size(455, 378);
             this.dataGridView1.TabIndex = 0;
             // 
-            // IDCAMPANHA
+            // HABILIDADES
             // 
-            this.IDCAMPANHA.HeaderText = "Id Campanha";
-            this.IDCAMPANHA.Name = "IDCAMPANHA";
-            this.IDCAMPANHA.ReadOnly = true;
+            this.HABILIDADES.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.HABILIDADES.HeaderText = "Habilidades";
+            this.HABILIDADES.Name = "HABILIDADES";
+            this.HABILIDADES.ReadOnly = true;
             // 
-            // CAMPANHA
+            // NOTAS
             // 
-            this.CAMPANHA.HeaderText = "Campanha";
-            this.CAMPANHA.Name = "CAMPANHA";
-            this.CAMPANHA.ReadOnly = true;
+            this.NOTAS.HeaderText = "Notas";
+            this.NOTAS.Name = "NOTAS";
+            this.NOTAS.ReadOnly = true;
             // 
-            // DTRESPOSTA
-            // 
-            this.DTRESPOSTA.HeaderText = "Data Resposta";
-            this.DTRESPOSTA.Name = "DTRESPOSTA";
-            this.DTRESPOSTA.ReadOnly = true;
-            // 
-            // frmRespostas
+            // frmResultados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(479, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "frmRespostas";
-            this.Text = "Respostas";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "frmResultados";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Resultados";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDCAMPANHA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CAMPANHA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DTRESPOSTA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HABILIDADES;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NOTAS;
     }
 }
