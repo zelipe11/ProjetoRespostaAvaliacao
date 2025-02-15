@@ -1,4 +1,6 @@
-﻿using ProjetoRespostaAvaliacao.Formularios.Questionario;
+﻿using FuncoesWinthor;
+using ProjetoRespostaAvaliacao.Formularios.Questionario;
+using ProjetoRespostaAvaliacao.Formularios.Respostas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,7 @@ namespace ProjetoRespostaAvaliacao
 {
     public partial class Form1 : Form
     {
+        UsuarioVO usuarioVO;
         public Form1()
         {
             InitializeComponent();
@@ -26,6 +29,14 @@ namespace ProjetoRespostaAvaliacao
 
         private void button2_Click(object sender, EventArgs e)
         {
+            frmLogin login = new frmLogin(1);
+            if (login.ShowDialog() == DialogResult.Yes)
+            {
+                usuarioVO = login.usuario;
+                frmResultados resultados = new frmResultados();
+                resultados.ShowDialog();
+            }
+
 
         }
     }
