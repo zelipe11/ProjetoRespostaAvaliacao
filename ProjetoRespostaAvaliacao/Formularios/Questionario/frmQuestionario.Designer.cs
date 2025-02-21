@@ -36,6 +36,7 @@
             this.DTFIM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FORMATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TPAVALIACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDPERGUNTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +54,8 @@
             this.DTINICIO,
             this.DTFIM,
             this.FORMATO,
-            this.TPAVALIACAO});
+            this.TPAVALIACAO,
+            this.IDPERGUNTA});
             this.dataGridView1.Location = new System.Drawing.Point(12, 31);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -75,6 +77,7 @@
             // 
             // IDCAMPANHA
             // 
+            this.IDCAMPANHA.DataPropertyName = "CODPESQ";
             this.IDCAMPANHA.HeaderText = "Id";
             this.IDCAMPANHA.Name = "IDCAMPANHA";
             this.IDCAMPANHA.ReadOnly = true;
@@ -83,33 +86,46 @@
             // CAMPANHA
             // 
             this.CAMPANHA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CAMPANHA.DataPropertyName = "DESCRICAOPESQ";
             this.CAMPANHA.HeaderText = "Campanha";
             this.CAMPANHA.Name = "CAMPANHA";
             this.CAMPANHA.ReadOnly = true;
             // 
             // DTINICIO
             // 
+            this.DTINICIO.DataPropertyName = "DTINICIO";
             this.DTINICIO.HeaderText = "Data Inicio";
             this.DTINICIO.Name = "DTINICIO";
             this.DTINICIO.ReadOnly = true;
             // 
             // DTFIM
             // 
+            this.DTFIM.DataPropertyName = "DTFIM";
             this.DTFIM.HeaderText = "Data Fim";
             this.DTFIM.Name = "DTFIM";
             this.DTFIM.ReadOnly = true;
             // 
             // FORMATO
             // 
+            this.FORMATO.DataPropertyName = "FORMATOPESQ";
             this.FORMATO.HeaderText = "Formato";
             this.FORMATO.Name = "FORMATO";
             this.FORMATO.ReadOnly = true;
             // 
             // TPAVALIACAO
             // 
+            this.TPAVALIACAO.DataPropertyName = "TIPOAVALIA";
             this.TPAVALIACAO.HeaderText = "Tipo Avaliação";
             this.TPAVALIACAO.Name = "TPAVALIACAO";
             this.TPAVALIACAO.ReadOnly = true;
+            // 
+            // IDPERGUNTA
+            // 
+            this.IDPERGUNTA.DataPropertyName = "IDPERGUNTA";
+            this.IDPERGUNTA.HeaderText = "Id Pergunta";
+            this.IDPERGUNTA.Name = "IDPERGUNTA";
+            this.IDPERGUNTA.ReadOnly = true;
+            this.IDPERGUNTA.Visible = false;
             // 
             // frmQuestionario
             // 
@@ -119,6 +135,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmQuestionario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questionario";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -136,5 +153,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DTFIM;
         private System.Windows.Forms.DataGridViewTextBoxColumn FORMATO;
         private System.Windows.Forms.DataGridViewTextBoxColumn TPAVALIACAO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDPERGUNTA;
     }
 }

@@ -23,8 +23,8 @@ namespace ProjetoRespostaAvaliacao
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmQuestionario questionario = new frmQuestionario();
-            questionario.ShowDialog();
+            frmInicialQuestionario inicialQuestionario = new frmInicialQuestionario();
+            inicialQuestionario.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

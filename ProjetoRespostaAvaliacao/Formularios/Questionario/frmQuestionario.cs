@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FuncoesWinthor;
+using ProjetoRespostaAvaliacao.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,19 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
 {
     public partial class frmQuestionario : Form
     {
+        string Cpf;
         public frmQuestionario()
         {
             InitializeComponent();
+        }
+
+        public frmQuestionario(string cpf)
+        {
+            InitializeComponent();
+            this.Cpf = cpf;
+            int codsetor = InformacaoDAO.SetorDoUsuario(cpf);
+            dataGridView1.DataSource = QuestionarioDAO.Questionarios(codsetor);
+
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -23,14 +35,15 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             {
                 if (dataGridView1.Rows[e.RowIndex].Cells["FORMATO"].Value?.ToString() == "IDENTIFICADA")
                 {
-                    //login
-
-                    frmRespostaQuestionario respostaQuestionario = new frmRespostaQuestionario();
+                    int idPergunta = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["IDPERGUNTA"].Value);
+                    frmRespostaQuestionario respostaQuestionario = new frmRespostaQuestionario(Cpf, idPergunta);
                     respostaQuestionario.ShowDialog();
+                                 
                 }
-                else
+                else if (dataGridView1.Rows[e.RowIndex].Cells["FORMATO"].Value?.ToString() == "ANONIMA")
                 {
-                    frmRespostaQuestionario respostaQuestionario = new frmRespostaQuestionario();
+                    int idPergunta = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["IDPERGUNTA"].Value);
+                    frmRespostaQuestionario respostaQuestionario = new frmRespostaQuestionario(idPergunta);
                     respostaQuestionario.ShowDialog();
                 }
             }

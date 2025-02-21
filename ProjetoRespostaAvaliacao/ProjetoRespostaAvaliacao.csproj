@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,11 +51,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\InformacaoDAO.cs" />
+    <Compile Include="DAO\QuestionarioDAO.cs" />
+    <Compile Include="DAO\RespostaDAO.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Questionario\frmGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Questionario\frmGrupo.Designer.cs">
+      <DependentUpon>frmGrupo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Questionario\frmInicialQuestionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Questionario\frmInicialQuestionario.Designer.cs">
+      <DependentUpon>frmInicialQuestionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Questionario\frmLoginQuestionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Questionario\frmLoginQuestionario.Designer.cs">
+      <DependentUpon>frmLoginQuestionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Questionario\frmQuestionario.cs">
       <SubType>Form</SubType>
@@ -78,6 +100,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Questionario\frmGrupo.resx">
+      <DependentUpon>frmGrupo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Questionario\frmInicialQuestionario.resx">
+      <DependentUpon>frmInicialQuestionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Questionario\frmLoginQuestionario.resx">
+      <DependentUpon>frmLoginQuestionario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Questionario\frmQuestionario.resx">
       <DependentUpon>frmQuestionario.cs</DependentUpon>
