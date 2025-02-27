@@ -20,7 +20,7 @@ namespace ProjetoRespostaAvaliacao.DAO
 
         public static DataTable RespostasSalvas(int codPerg, int codGrupo, int codFunc, int idPesq)
         {
-            string sql = $"select respostafunc, comentariofunc from fstrespostasrh where codperg = {codPerg} and codgrupo = {codGrupo} and codfunc = {codFunc} and idpergunta = {idPesq}";
+            string sql = $"select respostafunc, comentariofunc from fstrespostasrh where codperg = {codPerg} and codgrupo = {codGrupo} and codfunc = {codFunc} and idpergunta = {idPesq} and AVALEXP is null";
 
             return MetodosDB.ExecutaSelect(sql, "FESTPAN");
         }
@@ -34,7 +34,7 @@ namespace ProjetoRespostaAvaliacao.DAO
 
         public static bool ExisteRespostaSalva(int codgrupo, int codfunc, int codperg, int idPesq)
         {
-            string sql = $"select * from fstrespostasrh where codgrupo = {codgrupo} and codfunc = {codfunc} and codperg = {codperg} and idpergunta = {idPesq}";
+            string sql = $"select * from fstrespostasrh where codgrupo = {codgrupo} and codfunc = {codfunc} and codperg = {codperg} and idpergunta = {idPesq} and AVALEXP is null";
 
             DataTable dt = MetodosDB.ExecutaSelect(sql, "FESTPAN");
 

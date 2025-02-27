@@ -25,6 +25,7 @@ namespace ProjetoRespostaAvaliacao.DAO
                             and pp.idpergunta = r.idpergunta 
                             and r.codgrupo = g.codgrupo
                             and r.dtfinaliza is not null
+                            and r.AVALEXP is null
                             group by p.codpesq, p.descricaopesq, r.dtfinaliza, p.idpergunta, r.codgrupo, g.descricao";
 
             return MetodosDB.ExecutaSelect(sql, "FESTPAN");

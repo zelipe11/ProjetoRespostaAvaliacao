@@ -29,7 +29,7 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             if (InformacaoDAO.ExisteCPF(cpf) && Tipo == "AVALIACAO")
             {
                 frmQuestionario questionario = new frmQuestionario(cpf);
-                questionario.Show();
+                questionario.ShowDialog();
             }
             
             else if (InformacaoDAO.ExisteCPF(cpf) && Tipo == "RESPOSTAS")
@@ -37,6 +37,9 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 frmResultados resultados = new frmResultados(cpf);
                 resultados.ShowDialog();
             }
+
+            else
+                MessageBox.Show("Esse CPF não está cadastrado, entre em contato com o RH");
         }
     }
 }
