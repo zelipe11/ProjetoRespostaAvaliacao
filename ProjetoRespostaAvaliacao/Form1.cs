@@ -29,15 +29,8 @@ namespace ProjetoRespostaAvaliacao
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmLogin login = new frmLogin(1);
-            if (login.ShowDialog() == DialogResult.Yes)
-            {
-                usuarioVO = login.usuario;
-                frmResultados resultados = new frmResultados();
-                resultados.ShowDialog();
-            }
-
-
+            frmLoginQuestionario login = new frmLoginQuestionario("RESPOSTAS");
+            login.ShowDialog();
         }
     }
 }

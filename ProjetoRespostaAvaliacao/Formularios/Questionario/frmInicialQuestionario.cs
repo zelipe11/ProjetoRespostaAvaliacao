@@ -25,7 +25,7 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmLoginQuestionario loginQuestionario = new frmLoginQuestionario();
+            frmLoginQuestionario loginQuestionario = new frmLoginQuestionario("AVALIACAO");
             loginQuestionario.ShowDialog();
         }
     }

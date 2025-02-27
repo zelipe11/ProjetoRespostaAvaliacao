@@ -1,4 +1,5 @@
 ﻿using ProjetoRespostaAvaliacao.DAO;
+using ProjetoRespostaAvaliacao.Formularios.Respostas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,11 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
 {
     public partial class frmLoginQuestionario : Form
     {
-        public frmLoginQuestionario()
+        public string Tipo;
+        public frmLoginQuestionario(string tipo)
         {
             InitializeComponent();
+            this.Tipo = tipo;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -23,10 +26,16 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             string cpf = textBox1.Text;
             cpf = cpf.Replace(".", "").Replace("-", "");
 
-            if (InformacaoDAO.ExisteCPF(cpf))
+            if (InformacaoDAO.ExisteCPF(cpf) && Tipo == "AVALIACAO")
             {
                 frmQuestionario questionario = new frmQuestionario(cpf);
                 questionario.Show();
+            }
+            
+            else if (InformacaoDAO.ExisteCPF(cpf) && Tipo == "RESPOSTAS")
+            {
+                frmResultados resultados = new frmResultados(cpf);
+                resultados.ShowDialog();
             }
         }
     }

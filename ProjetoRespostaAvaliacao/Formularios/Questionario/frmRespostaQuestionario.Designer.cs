@@ -31,14 +31,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.IDPERGUNTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PERGUNTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TIPOPERG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RESPOSTA = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.OBSERVACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -61,14 +61,15 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDPERGUNTA,
+            this.ID,
             this.PERGUNTA,
             this.TIPOPERG,
             this.RESPOSTA,
             this.OBSERVACAO});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 242);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 36);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 262);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 468);
             this.dataGridView1.TabIndex = 1;
             // 
             // button1
@@ -82,11 +83,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(597, 510);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Salvar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // IDPERGUNTA
             // 
-            this.IDPERGUNTA.DataPropertyName = "ID";
-            this.IDPERGUNTA.HeaderText = "Id";
+            this.IDPERGUNTA.DataPropertyName = "IDPERGUNTA";
+            this.IDPERGUNTA.HeaderText = "Id Perg";
             this.IDPERGUNTA.Name = "IDPERGUNTA";
+            this.IDPERGUNTA.Visible = false;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "Id";
+            this.ID.Name = "ID";
+            this.ID.Visible = false;
             // 
             // PERGUNTA
             // 
@@ -104,6 +125,7 @@
             // 
             // RESPOSTA
             // 
+            this.RESPOSTA.DataPropertyName = "RESPOSTA";
             this.RESPOSTA.HeaderText = "Resposta";
             this.RESPOSTA.Items.AddRange(new object[] {
             "0",
@@ -118,23 +140,16 @@
             // 
             // OBSERVACAO
             // 
+            this.OBSERVACAO.DataPropertyName = "OBSERVACAO";
             this.OBSERVACAO.HeaderText = "Observação";
             this.OBSERVACAO.Name = "OBSERVACAO";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 36);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(776, 150);
-            this.dataGridView2.TabIndex = 3;
             // 
             // frmRespostaQuestionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 545);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
@@ -142,7 +157,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Resposta Questionario";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,11 +167,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDPERGUNTA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PERGUNTA;
         private System.Windows.Forms.DataGridViewTextBoxColumn TIPOPERG;
         private System.Windows.Forms.DataGridViewComboBoxColumn RESPOSTA;
         private System.Windows.Forms.DataGridViewTextBoxColumn OBSERVACAO;
-        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }

@@ -13,7 +13,15 @@ namespace ProjetoRespostaAvaliacao.DAO
         public static DataTable Questionarios(int codsetor)
         {
             string sql = $@"select codpesq, descricaopesq, dtinicio, dtfim, CASE WHEN formato = 'I' then 'IDENTIFICADA' WHEN formato = 'A' then 'ANONIMA' END AS formatopesq, 
-                            tipoavalia, idpergunta from fstpesquisarh where (codsetor = {codsetor} or codsetor is null) and formato = 'I'";
+                            tipoavalia, idpergunta from fstpesquisarh where codsetor = {codsetor} and formato = 'I'";
+
+            return MetodosDB.ExecutaSelect(sql, "FESTPAN");
+        }
+        
+        public static DataTable Questionarios()
+        {
+            string sql = $@"select codpesq, descricaopesq, dtinicio, dtfim, CASE WHEN formato = 'I' then 'IDENTIFICADA' WHEN formato = 'A' then 'ANONIMA' END AS formatopesq, 
+                            tipoavalia, idpergunta from fstpesquisarh where codsetor is null and formato = 'A'";
 
             return MetodosDB.ExecutaSelect(sql, "FESTPAN");
         }

@@ -54,6 +54,7 @@
     <Compile Include="DAO\InformacaoDAO.cs" />
     <Compile Include="DAO\QuestionarioDAO.cs" />
     <Compile Include="DAO\RespostaDAO.cs" />
+    <Compile Include="DAO\ResultadosDAO.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +97,12 @@
     <Compile Include="Formularios\Respostas\frmResultados.Designer.cs">
       <DependentUpon>frmResultados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Respostas\frmResultadosUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Respostas\frmResultadosUser.Designer.cs">
+      <DependentUpon>frmResultadosUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -119,6 +126,9 @@
     <EmbeddedResource Include="Formularios\Respostas\frmResultados.resx">
       <DependentUpon>frmResultados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Respostas\frmResultadosUser.resx">
+      <DependentUpon>frmResultadosUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -141,6 +151,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="System.Data.OracleClient">
+      <Version>1.0.8</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

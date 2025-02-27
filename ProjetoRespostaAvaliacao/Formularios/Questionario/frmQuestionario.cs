@@ -18,6 +18,7 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
         public frmQuestionario()
         {
             InitializeComponent();
+            dataGridView1.DataSource = QuestionarioDAO.Questionarios();
         }
 
         public frmQuestionario(string cpf)
@@ -36,15 +37,15 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 if (dataGridView1.Rows[e.RowIndex].Cells["FORMATO"].Value?.ToString() == "IDENTIFICADA")
                 {
                     int idPergunta = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["IDPERGUNTA"].Value);
-                    frmRespostaQuestionario respostaQuestionario = new frmRespostaQuestionario(Cpf, idPergunta);
-                    respostaQuestionario.ShowDialog();
+                    frmGrupo grupo = new frmGrupo(Cpf, idPergunta);
+                    grupo.ShowDialog();
                                  
                 }
                 else if (dataGridView1.Rows[e.RowIndex].Cells["FORMATO"].Value?.ToString() == "ANONIMA")
                 {
                     int idPergunta = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["IDPERGUNTA"].Value);
-                    frmRespostaQuestionario respostaQuestionario = new frmRespostaQuestionario(idPergunta);
-                    respostaQuestionario.ShowDialog();
+                    frmGrupo grupo = new frmGrupo(idPergunta);
+                    grupo.ShowDialog();
                 }
             }
             else
