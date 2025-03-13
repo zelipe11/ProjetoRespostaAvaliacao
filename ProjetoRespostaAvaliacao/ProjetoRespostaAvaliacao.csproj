@@ -61,6 +61,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Questionario\frmCriarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Questionario\frmCriarSenha.Designer.cs">
+      <DependentUpon>frmCriarSenha.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Questionario\frmGrupo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Questionario\frmCriarSenha.resx">
+      <DependentUpon>frmCriarSenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Questionario\frmGrupo.resx">
       <DependentUpon>frmGrupo.cs</DependentUpon>

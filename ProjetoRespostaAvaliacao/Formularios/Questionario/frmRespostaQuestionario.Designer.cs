@@ -36,7 +36,6 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PERGUNTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TIPOPERG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RESPOSTA = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.OBSERVACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +63,6 @@
             this.ID,
             this.PERGUNTA,
             this.TIPOPERG,
-            this.RESPOSTA,
             this.OBSERVACAO});
             this.dataGridView1.Location = new System.Drawing.Point(12, 36);
             this.dataGridView1.Name = "dataGridView1";
@@ -123,21 +121,6 @@
             this.TIPOPERG.Name = "TIPOPERG";
             this.TIPOPERG.Visible = false;
             // 
-            // RESPOSTA
-            // 
-            this.RESPOSTA.DataPropertyName = "RESPOSTA";
-            this.RESPOSTA.HeaderText = "Resposta";
-            this.RESPOSTA.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.RESPOSTA.Name = "RESPOSTA";
-            this.RESPOSTA.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.RESPOSTA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // OBSERVACAO
             // 
             this.OBSERVACAO.DataPropertyName = "OBSERVACAO";
@@ -172,7 +155,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PERGUNTA;
         private System.Windows.Forms.DataGridViewTextBoxColumn TIPOPERG;
-        private System.Windows.Forms.DataGridViewComboBoxColumn RESPOSTA;
         private System.Windows.Forms.DataGridViewTextBoxColumn OBSERVACAO;
     }
 }

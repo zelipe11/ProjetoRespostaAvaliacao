@@ -24,15 +24,48 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
         private void button1_Click(object sender, EventArgs e)
         {
             string cpf = textBox1.Text;
+            string senha = textBox2.Text;
             cpf = cpf.Replace(".", "").Replace("-", "");
 
-            if (InformacaoDAO.ExisteCPF(cpf) && Tipo == "AVALIACAO")
+            if (InformacaoDAO.ExisteCPF(cpf, senha) && Tipo == "AVALIACAO")
             {
                 frmQuestionario questionario = new frmQuestionario(cpf);
                 questionario.ShowDialog();
             }
-            
-            else if (InformacaoDAO.ExisteCPF(cpf) && Tipo == "RESPOSTAS")
+
+            else if (!InformacaoDAO.ExisteCPF(cpf, senha) && Tipo == "AVALIACAO")
+            {
+                if (InformacaoDAO.TemCpf(cpf))
+                {
+                    if (!InformacaoDAO.TemSenha(cpf))
+                    {
+                        frmCriarSenha criarSenha = new frmCriarSenha(cpf);
+                        criarSenha.ShowDialog();
+                    }
+                    else
+                        MessageBox.Show("Senha Invalida!");
+                }
+                else
+                    MessageBox.Show("Esse CPF não está cadastrado, entre em contato com o RH");
+            }
+
+            else if (!InformacaoDAO.ExisteCPF(cpf, senha) && Tipo == "RESPOSTAS")
+            {
+                if (InformacaoDAO.TemCpf(cpf))
+                {
+                    if (!InformacaoDAO.TemSenha(cpf))
+                    {
+                        frmCriarSenha criarSenha = new frmCriarSenha(cpf);
+                        criarSenha.ShowDialog();
+                    }
+                    else
+                        MessageBox.Show("Senha Invalida!");
+                }
+                else
+                    MessageBox.Show("Esse CPF não está cadastrado, entre em contato com o RH");
+            }
+
+            else if (InformacaoDAO.ExisteCPF(cpf, senha) && Tipo == "RESPOSTAS")
             {
                 frmResultados resultados = new frmResultados(cpf);
                 resultados.ShowDialog();

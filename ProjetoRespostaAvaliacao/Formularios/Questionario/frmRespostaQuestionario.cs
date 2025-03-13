@@ -27,8 +27,26 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             label1.Text = "Anonimo";
 
             dataGridView1.DataSource = RespostaDAO.Perguntas(IdCampanha, Idgrupo);
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                string tpPerg = row.Cells["TIPOPERG"].Value.ToString();
+
+                if (tpPerg.Equals("N"))
+                {
+                    DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
+                    comboBoxCell.Items.AddRange(ObterOpcoesComboBox());
+                    row.Cells["RESPOSTA"] = comboBoxCell;
+                }
+                else if (tpPerg.Equals("T"))
+                {
+                    DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
+                    textBoxCell.Value = row.Cells["RESPOSTA"].Value;
+                    row.Cells["RESPOSTA"] = textBoxCell;
+                }
+            }
         }
-        
+
         public frmRespostaQuestionario(string cpf, int idCampanha, int idGrupo)
         {
             InitializeComponent();
@@ -44,33 +62,69 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
 
             label1.Text = nome + " - " + func;
 
+            // Obtém as perguntas e adiciona apenas OBSERVACAO no DataTable
             DataTable perguntas = RespostaDAO.Perguntas(IdCampanha, Idgrupo);
-
-            perguntas.Columns.Add("RESPOSTA", typeof(string));
             perguntas.Columns.Add("OBSERVACAO", typeof(string));
 
             dataGridView1.DataSource = perguntas;
 
-            foreach (DataRow row in perguntas.Rows)
-            {
-                if (row["ID"] != DBNull.Value)
-                {
-                    int id = Convert.ToInt32(row["ID"]);
-                    int idPerg = Convert.ToInt32(row["IDPERGUNTA"]);
+            // Remover a coluna "RESPOSTA" do DataTable e adicioná-la manualmente ao DataGridView
+            if (dataGridView1.Columns["RESPOSTA"] != null)
+                dataGridView1.Columns.Remove("RESPOSTA");
 
-                    if (RespostaDAO.ExisteRespostaSalva(Idgrupo, CodUser, id, idPerg ))
+            DataGridViewTextBoxColumn colunaResposta = new DataGridViewTextBoxColumn
+            {
+                Name = "RESPOSTA",
+                HeaderText = "Resposta"
+            };
+            dataGridView1.Columns.Add(colunaResposta);            
+
+            dataGridView1.DataBindingComplete += DataGridView1_DataBindingComplete;
+
+            button2.Visible = true;
+        }
+
+        private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                string tipoPergunta = row.Cells["TIPOPERG"].Value.ToString();
+                if (tipoPergunta == "N")
+                {
+                    // Se for "N", alterar a célula para ComboBox
+                    DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
+                    comboBoxCell.Items.AddRange(ObterOpcoesComboBox());
+                    comboBoxCell.Value = row.Cells["RESPOSTA"].Value;
+                    row.Cells["RESPOSTA"] = comboBoxCell;
+                }
+                else
+                {
+                    // Se não for "N", alterar para TextBox
+                    DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
+                    textBoxCell.Value = row.Cells["RESPOSTA"].Value;
+                    row.Cells["RESPOSTA"] = textBoxCell;
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells["ID"].Value != DBNull.Value)
+                {
+                    int id = Convert.ToInt32(row.Cells["ID"].Value);
+                    int idPerg = Convert.ToInt32(row.Cells["IDPERGUNTA"].Value);
+
+                    if (RespostaDAO.ExisteRespostaSalva(Idgrupo, CodUser, id, idPerg))
                     {
-                        DataTable resposta = RespostaDAO.RespostasSalvas(id, Idgrupo, CodUser, idPerg );
+                        DataTable resposta = RespostaDAO.RespostasSalvas(id, Idgrupo, CodUser, idPerg);
 
                         if (resposta.Rows.Count > 0)
                         {
-                            row["RESPOSTA"] = resposta.Rows[0][0] != DBNull.Value ? resposta.Rows[0][0].ToString() : string.Empty;
-                            row["OBSERVACAO"] = resposta.Rows[0][1] != DBNull.Value ? resposta.Rows[0][1].ToString() : string.Empty;
+                            row.Cells["OBSERVACAO"].Value = resposta.Rows[0][1] != DBNull.Value ? resposta.Rows[0][1].ToString() : string.Empty;
+                            row.Cells["RESPOSTA"].Value = resposta.Rows[0][0] != DBNull.Value ? resposta.Rows[0][0].ToString() : string.Empty;
                         }
                         else
                         {
-                            row["RESPOSTA"] = string.Empty;
-                            row["OBSERVACAO"] = string.Empty;
+                            row.Cells["OBSERVACAO"].Value = string.Empty;
                         }
                     }
 
@@ -81,9 +135,6 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                     }
                 }
             }
-            dataGridView1.Refresh();            
-
-            button2.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -114,6 +165,18 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             }
             MessageBox.Show("Questionario respondido com sucesso");
             this.Close();
+        }
+
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            dataGridView1.CurrentCell.Value = comboBox.SelectedItem.ToString();
+        }
+
+        // Método para obter as opções do ComboBox
+        private string[] ObterOpcoesComboBox()
+        {
+            return new string[] { "0", "1", "2", "3", "4", "5" };
         }
 
         private void button2_Click(object sender, EventArgs e)
