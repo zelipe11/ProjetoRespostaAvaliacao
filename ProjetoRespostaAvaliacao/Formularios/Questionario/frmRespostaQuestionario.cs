@@ -28,23 +28,19 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
 
             dataGridView1.DataSource = RespostaDAO.Perguntas(IdCampanha, Idgrupo);
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                string tpPerg = row.Cells["TIPOPERG"].Value.ToString();
+            if (dataGridView1.Columns["RESPOSTA"] != null)
+                dataGridView1.Columns.Remove("RESPOSTA");
 
-                if (tpPerg.Equals("N"))
-                {
-                    DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
-                    comboBoxCell.Items.AddRange(ObterOpcoesComboBox());
-                    row.Cells["RESPOSTA"] = comboBoxCell;
-                }
-                else if (tpPerg.Equals("T"))
-                {
-                    DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
-                    textBoxCell.Value = row.Cells["RESPOSTA"].Value;
-                    row.Cells["RESPOSTA"] = textBoxCell;
-                }
-            }
+            DataGridViewTextBoxColumn colunaResposta = new DataGridViewTextBoxColumn
+            {
+                Name = "RESPOSTA",
+                HeaderText = "Resposta"
+            };
+
+            dataGridView1.Columns.Add(colunaResposta);
+
+            dataGridView1.DataBindingComplete += DataGridView1_DataBindingComplete;
+
         }
 
         public frmRespostaQuestionario(string cpf, int idCampanha, int idGrupo)
@@ -62,13 +58,11 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
 
             label1.Text = nome + " - " + func;
 
-            // Obtém as perguntas e adiciona apenas OBSERVACAO no DataTable
             DataTable perguntas = RespostaDAO.Perguntas(IdCampanha, Idgrupo);
             perguntas.Columns.Add("OBSERVACAO", typeof(string));
 
             dataGridView1.DataSource = perguntas;
 
-            // Remover a coluna "RESPOSTA" do DataTable e adicioná-la manualmente ao DataGridView
             if (dataGridView1.Columns["RESPOSTA"] != null)
                 dataGridView1.Columns.Remove("RESPOSTA");
 
@@ -91,7 +85,6 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 string tipoPergunta = row.Cells["TIPOPERG"].Value.ToString();
                 if (tipoPergunta == "N")
                 {
-                    // Se for "N", alterar a célula para ComboBox
                     DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
                     comboBoxCell.Items.AddRange(ObterOpcoesComboBox());
                     comboBoxCell.Value = row.Cells["RESPOSTA"].Value;
@@ -99,7 +92,6 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 }
                 else
                 {
-                    // Se não for "N", alterar para TextBox
                     DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
                     textBoxCell.Value = row.Cells["RESPOSTA"].Value;
                     row.Cells["RESPOSTA"] = textBoxCell;
@@ -173,7 +165,6 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             dataGridView1.CurrentCell.Value = comboBox.SelectedItem.ToString();
         }
 
-        // Método para obter as opções do ComboBox
         private string[] ObterOpcoesComboBox()
         {
             return new string[] { "0", "1", "2", "3", "4", "5" };
