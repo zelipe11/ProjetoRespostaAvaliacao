@@ -60,14 +60,14 @@ namespace ProjetoRespostaAvaliacao.DAO
 
         public static int CodigoResposta()
         {
-            string sql = @"select max(codigo) + 1 from fstrespostasrh";
+            string sql = @"select COALESCE(MAX(codigo), 0) + 1 from fstrespostasrh";
 
             DataTable dt = MetodosDB.ExecutaSelect(sql, "FESTPAN");
 
             return Convert.ToInt32(dt.Rows[0][0]);
         }
 
-        public static void SalvarRespostas(int codGrupo, int codFunc, int codPerg, int respostaFunc, string comentFunc, int IdPesq)
+        public static void SalvarRespostas(int codGrupo, int codFunc, int codPerg, string respostaFunc, string comentFunc, int IdPesq)
         {
             OracleConnection conexao = ConexaoDB.GetConexaoProd();
             OracleTransaction transacao = conexao.BeginTransaction();
@@ -129,7 +129,7 @@ namespace ProjetoRespostaAvaliacao.DAO
             }
         }
         
-        public static void FinalizarRespostas(int codGrupo, int codFunc, int codPerg, int respostaFunc, string comentFunc, int idPesq)
+        public static void FinalizarRespostas(int codGrupo, int codFunc, int codPerg, string respostaFunc, string comentFunc, int idPesq)
         {
             OracleConnection conexao = ConexaoDB.GetConexaoProd();
             OracleTransaction transacao = conexao.BeginTransaction();

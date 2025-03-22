@@ -18,6 +18,9 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
         int IdCampanha;
         int CodUser = 0;
         int Idgrupo = 0;
+
+        private bool jaExecutado = false;
+
         public frmRespostaQuestionario(int idCampanha, int idGrupo)
         {
             InitializeComponent();
@@ -80,6 +83,11 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
 
         private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            if (jaExecutado)
+                return;
+
+            jaExecutado = true;
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 string tipoPergunta = row.Cells["TIPOPERG"].Value.ToString();
@@ -148,7 +156,7 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 {
                     int id = Convert.ToInt32(row.Cells["ID"].Value);
                     int idperg = Convert.ToInt32(row.Cells["IDPERGUNTA"].Value);
-                    int respostaFunc = Convert.ToInt32(row.Cells["RESPOSTA"].Value.ToString());
+                    string respostaFunc = row.Cells["RESPOSTA"].Value.ToString();
                     string comentarioFunc = row.Cells["OBSERVACAO"].Value.ToString();
 
 
@@ -174,11 +182,11 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (!row.IsNewRow && row.Cells[2].Value != null && row.Cells[3].Value != null)
+                if (!row.IsNewRow && row.Cells["RESPOSTA"].Value != null && row.Cells["OBSERVACAO"].Value != null)
                 {
                     int id = Convert.ToInt32(row.Cells["ID"].Value);
                     int idperg = Convert.ToInt32(row.Cells["IDPERGUNTA"].Value);
-                    int respostaFunc = Convert.ToInt32(row.Cells["RESPOSTA"].Value.ToString());
+                    string respostaFunc = row.Cells["RESPOSTA"].Value.ToString();
                     string comentarioFunc = row.Cells["OBSERVACAO"].Value.ToString();
 
                     RespostaDAO.SalvarRespostas(Idgrupo, CodUser, id, respostaFunc, comentarioFunc, idperg);                    
