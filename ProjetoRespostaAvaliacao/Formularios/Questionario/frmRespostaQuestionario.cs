@@ -156,8 +156,8 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 {
                     int id = Convert.ToInt32(row.Cells["ID"].Value);
                     int idperg = Convert.ToInt32(row.Cells["IDPERGUNTA"].Value);
-                    string respostaFunc = row.Cells["RESPOSTA"].Value.ToString();
-                    string comentarioFunc = row.Cells["OBSERVACAO"].Value.ToString();
+                    string respostaFunc = row.Cells["RESPOSTA"].Value.ToString().Trim();
+                    string comentarioFunc = row.Cells["OBSERVACAO"].Value.ToString().Trim();
 
 
                     RespostaDAO.FinalizarRespostas(Idgrupo, CodUser, id, respostaFunc, comentarioFunc, idperg);
@@ -186,14 +186,26 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 {
                     int id = Convert.ToInt32(row.Cells["ID"].Value);
                     int idperg = Convert.ToInt32(row.Cells["IDPERGUNTA"].Value);
-                    string respostaFunc = row.Cells["RESPOSTA"].Value.ToString();
-                    string comentarioFunc = row.Cells["OBSERVACAO"].Value.ToString();
+                    string respostaFunc = row.Cells["RESPOSTA"].Value.ToString().Trim();
+                    string comentarioFunc = row.Cells["OBSERVACAO"].Value.ToString().Trim();
 
                     RespostaDAO.SalvarRespostas(Idgrupo, CodUser, id, respostaFunc, comentarioFunc, idperg);                    
                 }
             }
 
             MessageBox.Show("Respostas salvas com sucesso!");
+        }
+
+        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
+            {
+                dataGridView1.BeginEdit(false);
+                if (dataGridView1.EditingControl is ComboBox comboBox)
+                {
+                    comboBox.DroppedDown = true;
+                }
+            }
         }
     }
 }

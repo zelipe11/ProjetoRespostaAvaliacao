@@ -37,6 +37,9 @@
             this.FORMATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TPAVALIACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDPERGUNTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTRESPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTPERG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CODSETOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +58,10 @@
             this.DTFIM,
             this.FORMATO,
             this.TPAVALIACAO,
-            this.IDPERGUNTA});
+            this.IDPERGUNTA,
+            this.QTRESPO,
+            this.QTPERG,
+            this.CODSETOR});
             this.dataGridView1.Location = new System.Drawing.Point(12, 31);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -127,6 +133,30 @@
             this.IDPERGUNTA.ReadOnly = true;
             this.IDPERGUNTA.Visible = false;
             // 
+            // QTRESPO
+            // 
+            this.QTRESPO.DataPropertyName = "QTRESPO";
+            this.QTRESPO.HeaderText = "Respo";
+            this.QTRESPO.Name = "QTRESPO";
+            this.QTRESPO.ReadOnly = true;
+            this.QTRESPO.Visible = false;
+            // 
+            // QTPERG
+            // 
+            this.QTPERG.DataPropertyName = "QTPERG";
+            this.QTPERG.HeaderText = "Perg";
+            this.QTPERG.Name = "QTPERG";
+            this.QTPERG.ReadOnly = true;
+            this.QTPERG.Visible = false;
+            // 
+            // CODSETOR
+            // 
+            this.CODSETOR.DataPropertyName = "CODSETOR";
+            this.CODSETOR.HeaderText = "Setor";
+            this.CODSETOR.Name = "CODSETOR";
+            this.CODSETOR.ReadOnly = true;
+            this.CODSETOR.Visible = false;
+            // 
             // frmQuestionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,5 +184,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FORMATO;
         private System.Windows.Forms.DataGridViewTextBoxColumn TPAVALIACAO;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDPERGUNTA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTRESPO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTPERG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CODSETOR;
     }
 }
