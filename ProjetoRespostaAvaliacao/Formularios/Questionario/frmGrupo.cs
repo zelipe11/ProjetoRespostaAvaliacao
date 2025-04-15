@@ -22,7 +22,8 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             InitializeComponent();
             this.IdPesquisa = idPesquisa;
             this.Cpf = cpf;
-            dataGridView2.DataSource = RespostaDAO.Grupos(IdPesquisa);
+            int setor = InformacaoDAO.SetorDoUsuario(cpf);
+            dataGridView2.DataSource = RespostaDAO.Grupos(IdPesquisa, setor);
             Indentificada = true;
         }
         
@@ -30,7 +31,7 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
         {
             InitializeComponent();
             this.IdPesquisa = idPesquisa;
-            dataGridView2.DataSource = RespostaDAO.Grupos(IdPesquisa);
+            dataGridView2.DataSource = RespostaDAO.Grupos(IdPesquisa, 0);
             Indentificada = false;
         }
 

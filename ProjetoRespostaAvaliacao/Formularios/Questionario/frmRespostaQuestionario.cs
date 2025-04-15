@@ -19,6 +19,7 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
         int CodUser = 0;
         int Idgrupo = 0;
 
+        private bool Anonima = false;
         private bool jaExecutado = false;
 
         public frmRespostaQuestionario(int idCampanha, int idGrupo)
@@ -43,6 +44,9 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             dataGridView1.Columns.Add(colunaResposta);
 
             dataGridView1.DataBindingComplete += DataGridView1_DataBindingComplete;
+
+            //jaExecutado = true;
+            Anonima = true;
 
         }
 
@@ -106,6 +110,9 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 }
             }
 
+            if (Anonima)
+                return;
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Cells["ID"].Value != DBNull.Value)
@@ -150,6 +157,13 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                 }
             }
 
+            int idAnonima = 0;
+
+            if (Anonima)
+            {
+                idAnonima = RespostaDAO.SequencialAnonima();
+            }
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (!row.IsNewRow)
@@ -160,7 +174,7 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
                     string comentarioFunc = row.Cells["OBSERVACAO"].Value.ToString().Trim();
 
 
-                    RespostaDAO.FinalizarRespostas(Idgrupo, CodUser, id, respostaFunc, comentarioFunc, idperg);
+                    RespostaDAO.FinalizarRespostas(Idgrupo, CodUser, id, respostaFunc, comentarioFunc, idperg, idAnonima);
                 }
             }
             MessageBox.Show("Questionario respondido com sucesso");

@@ -13,7 +13,7 @@ namespace ProjetoRespostaAvaliacao.DAO
     {
         public static DataTable Perguntas(int idpergunta, int codgrupo)
         {
-            string sql = $"select idpergunta ,id, pergunta, tipoperg from fstperguntarh where id = {idpergunta} and codgrupo = {codgrupo} and dtexclusao is null";
+            string sql = $"select p.idpergunta ,p.id, p.pergunta, (select descricao from fsttipopesqrh where p.tipopesq = codpesq) tipopesq,p.tipoperg from fstperguntarh p where id = {idpergunta} and codgrupo = {codgrupo} and dtexclusao is null";
 
             return MetodosDB.ExecutaSelect(sql, "FESTPAN");
         }
@@ -25,9 +25,14 @@ namespace ProjetoRespostaAvaliacao.DAO
             return MetodosDB.ExecutaSelect(sql, "FESTPAN");
         }
 
-        public static DataTable Grupos(int idpergunta)
+        public static DataTable Grupos(int idpergunta, int setor)
         {
-            string sql = $"select p.codgrupo, g.descricao from fstperguntarh p, fstgruporh g where p.codgrupo = g.codgrupo and id = {idpergunta} group by p.codgrupo, g.descricao";
+            string sql = $"select p.codgrupo, g.descricao from fstperguntarh p, fstgruporh g where p.codgrupo = g.codgrupo and id = {idpergunta} ";
+
+            if (setor > 0)
+                sql += $" and g.codgrupo = (select grupo from fstsetorrh where codsetor = {setor}) ";
+
+            sql += " group by p.codgrupo, g.descricao ";
 
             return MetodosDB.ExecutaSelect(sql, "FESTPAN");
         }
@@ -129,7 +134,7 @@ namespace ProjetoRespostaAvaliacao.DAO
             }
         }
         
-        public static void FinalizarRespostas(int codGrupo, int codFunc, int codPerg, string respostaFunc, string comentFunc, int idPesq)
+        public static void FinalizarRespostas(int codGrupo, int codFunc, int codPerg, string respostaFunc, string comentFunc, int idPesq, int anonima)
         {
             OracleConnection conexao = ConexaoDB.GetConexaoProd();
             OracleTransaction transacao = conexao.BeginTransaction();
@@ -159,8 +164,8 @@ namespace ProjetoRespostaAvaliacao.DAO
                 }
                 else
                 {
-                    cmdPagar.CommandText = @"INSERT INTO fstrespostasrh (CODIGO, CODGRUPO, CODPERG, RESPOSTAFUNC, COMENTARIOFUNC, DTFINALIZA, CODFUNC, IDPERGUNTA)
-                                            VALUES (:codigo, :codgrupo, :codperg, :respostafunc, :comentariofunc, sysdate, :codfunc, :idpesq)";
+                    cmdPagar.CommandText = @"INSERT INTO fstrespostasrh (CODIGO, CODGRUPO, CODPERG, RESPOSTAFUNC, COMENTARIOFUNC, DTFINALIZA, CODFUNC, IDPERGUNTA, IDANONIMA)
+                                            VALUES (:codigo, :codgrupo, :codperg, :respostafunc, :comentariofunc, sysdate, :codfunc, :idpesq, :idanonima)";
 
                     int codigo = CodigoResposta();
 
@@ -171,6 +176,15 @@ namespace ProjetoRespostaAvaliacao.DAO
                     cmdPagar.Parameters.AddWithValue(":comentariofunc", comentFunc);
                     cmdPagar.Parameters.AddWithValue(":codfunc", codFunc);
                     cmdPagar.Parameters.AddWithValue(":idpesq", idPesq);
+
+                    if (anonima != 0)
+                    {
+                        cmdPagar.Parameters.AddWithValue(":idanonima", anonima);
+                    }
+                    else
+                        cmdPagar.Parameters.AddWithValue(":idanonima", DBNull.Value);
+                        
+
                 }
 
 
@@ -189,6 +203,17 @@ namespace ProjetoRespostaAvaliacao.DAO
             {
                 conexao.Close();
             }
+        }
+
+        public static int SequencialAnonima()
+        {
+            string sql = "select COALESCE(MAX(IDANONIMA),0) + 1 from fstrespostasrh ";
+
+            DataTable dt = MetodosDB.ExecutaSelect(sql, "FESTPAN");
+
+            return dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value
+                ? Convert.ToInt32(dt.Rows[0][0])
+                : 1;
         }
     }
 }

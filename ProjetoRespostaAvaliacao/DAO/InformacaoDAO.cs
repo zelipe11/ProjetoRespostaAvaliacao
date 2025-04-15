@@ -88,7 +88,9 @@ namespace ProjetoRespostaAvaliacao.DAO
 
             DataTable dt = MetodosDB.ExecutaSelect(sql, "FESTPAN");
 
-            return Convert.ToInt32(dt.Rows[0][0]);
+            return dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value
+                ? Convert.ToInt32(dt.Rows[0][0])
+                : 0;
         }
 
         public static int CodigoUsuario(string cpf)

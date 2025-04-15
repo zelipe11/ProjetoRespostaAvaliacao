@@ -26,6 +26,13 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             InitializeComponent();
             this.Cpf = cpf;
             int codsetor = InformacaoDAO.SetorDoUsuario(cpf);
+
+            if (codsetor == 0)
+            {
+                MessageBox.Show("Setor ainda não foi cadastrado, entre em contato com o RH");
+                this.Close();
+            }
+
             dataGridView1.DataSource = QuestionarioDAO.Questionarios(codsetor);
 
         }
