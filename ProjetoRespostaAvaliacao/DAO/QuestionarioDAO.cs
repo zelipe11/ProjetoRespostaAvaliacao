@@ -15,7 +15,7 @@ namespace ProjetoRespostaAvaliacao.DAO
             string sql = $@"select codpesq, descricaopesq, dtinicio, dtfim, CASE WHEN formato = 'I' then 'IDENTIFICADA' WHEN formato = 'A' then 'ANONIMA' END AS formatopesq, 
                             tipoavalia, idpergunta,(select count(codperg) from fstrespostasrh where codperg=a.idpergunta )qtrespo,(select count(id) 
                             from fstperguntarh where id=a.idpergunta)qtperg, a.codsetor from fstpesquisarh a where (codsetor = {codsetor} or codsetor is null) and formato = 'I'
-                            and (select count(codperg) from fstrespostasrh where codperg=a.idpergunta ) < (select count(id) from fstperguntarh where id=a.idpergunta)
+                            and (select count(codperg) from fstrespostasrh h where codperg=a.idpergunta and h.dtfinaliza is not null) < (select count(id) from fstperguntarh where id=a.idpergunta)
                             and a.dtexclusao is null
                             and trunc(sysdate) between trunc(dtinicio) and trunc(dtfim)";
 

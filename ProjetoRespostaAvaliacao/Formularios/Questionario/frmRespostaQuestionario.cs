@@ -181,12 +181,6 @@ namespace ProjetoRespostaAvaliacao.Formularios.Questionario
             this.Close();
         }
 
-        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBox comboBox = sender as ComboBox;
-            dataGridView1.CurrentCell.Value = comboBox.SelectedItem.ToString();
-        }
-
         private string[] ObterOpcoesComboBox()
         {
             return new string[] { "0", "1", "2", "3", "4", "5" };

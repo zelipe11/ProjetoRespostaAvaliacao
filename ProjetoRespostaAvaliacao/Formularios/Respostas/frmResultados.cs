@@ -31,7 +31,7 @@ namespace ProjetoRespostaAvaliacao.Formularios.Respostas
 
             label1.Text = nome + " - " + cargo;
 
-            dataGridView1.DataSource = ResultadosDAO.RespostasUsuario(CodFunc, CodSetor);
+            dataGridView1.DataSource = ResultadosDAO.RespostasUsuario(CodFunc);
 
         }
 

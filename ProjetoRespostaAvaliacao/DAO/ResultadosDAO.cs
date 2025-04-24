@@ -10,7 +10,7 @@ namespace ProjetoRespostaAvaliacao.DAO
 {
     public class ResultadosDAO
     {
-        public static DataTable RespostasUsuario(int codfunc, int codsetor)
+        public static DataTable RespostasUsuario(int codfunc)
         {
             string sql = $@"select p.codpesq, p.descricaopesq, r.codgrupo, g.descricao descgrupo,
                             TO_DATE(r.dtfinaliza, 'DD/MM/YYYY') dtresposta,
@@ -19,8 +19,7 @@ namespace ProjetoRespostaAvaliacao.DAO
                             from fstpesquisarh p, fstperguntarh pp, 
                             fstrespostasrh r , fstgruporh g
 
-                            where p.codsetor = {codsetor}
-                            and r.codfunc = {codfunc}
+                            where r.codfunc = {codfunc}
                             and p.idpergunta = pp.id 
                             and pp.idpergunta = r.idpergunta 
                             and r.codgrupo = g.codgrupo
